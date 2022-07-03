@@ -17,12 +17,13 @@ setup(
     packages=["pdfminer"],
     package_data={"pdfminer": ["cmap/*.pickle.gz", "py.typed"]},
     install_requires=[
-        'chardet ; python_version > "3.0"',
-        "cryptography",
+        "charset-normalizer >= 2.0.0",
+        "cryptography >= 36.0.0",
     ],
     extras_require={
         "dev": ["pytest", "nox", "black", "mypy == 0.931"],
         "docs": ["sphinx", "sphinx-argparse"],
+        "image": ["Pillow"],
     },
     description="PDF parser and analyzer",
     long_description=readme,

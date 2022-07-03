@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes in pdfminer.six will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -18,6 +19,62 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix extraction of jbig2 files, which was producing invalid files ([#652](https://github.com/pdfminer/pdfminer.six/pull/653))
 - Crash in `pdf2txt.py --boxes-flow=disabled` ([#682](https://github.com/pdfminer/pdfminer.six/pull/682))
 - Only use xref fallback if `PDFNoValidXRef` is raised and `fallback` is True ([#684](https://github.com/pdfminer/pdfminer.six/pull/684))
+
+### Changed
+- Replace warnings.warn with logging.Logger.warning in line with [recommended use](https://docs.python.org/3/howto/logging.html#when-to-use-logging) ([#673](https://github.com/pdfminer/pdfminer.six/pull/673))
+- Switched from nose to pytest, from tox to nox and from Travis CI to GitHub Actions ([#704](https://github.com/pdfminer/pdfminer.six/pull/704))
+
+### Removed
+- Unnecessary return statements without argument at the end of functions ([#707](https://github.com/pdfminer/pdfminer.six/pull/707))
+
+
+## [20220506]
+
+### Fixed
+
+- Ignoring (invalid) path constructors that do not begin with `m` ([#749](https://github.com/pdfminer/pdfminer.six/pull/749))
+
+### Changed
+
+- Removed upper version bounds ([#755](https://github.com/pdfminer/pdfminer.six/pull/755))
+
+## [20220506]
+
+### Fixed
+
+- `IndexError` when handling invalid bfrange code map in
+  CMap ([#731](https://github.com/pdfminer/pdfminer.six/pull/731))
+- `TypeError` in lzw.py when `self.table` is not set ([#732](https://github.com/pdfminer/pdfminer.six/pull/732))
+- `TypeError` in encodingdb.py when name of unicode is not
+  str ([#733](https://github.com/pdfminer/pdfminer.six/pull/733))
+- `TypeError` in HTMLConverter when using a bytes fontname ([#734](https://github.com/pdfminer/pdfminer.six/pull/734))
+
+### Added
+
+- Exporting images without any specific encoding ([#737](https://github.com/pdfminer/pdfminer.six/pull/737))
+
+### Changed
+
+- Using charset-normalizer instead of chardet for less restrictive license ([#744](https://github.com/pdfminer/pdfminer.six/pull/744))
+
+## [20220319]
+
+### Added
+
+- Export type annotations from pypi package per PEP561 ([#679](https://github.com/pdfminer/pdfminer.six/pull/679))
+- Support for identity cmap's ([#626](https://github.com/pdfminer/pdfminer.six/pull/626))
+- Add support for PDF page labels ([#680](https://github.com/pdfminer/pdfminer.six/pull/680))
+- Installation of Pillow as an optional extra dependency ([#714](https://github.com/pdfminer/pdfminer.six/pull/714))
+
+### Fixed
+
+- Hande decompression error due to CRC checksum error ([#637](https://github.com/pdfminer/pdfminer.six/pull/637))
+- Regression (since 20191107) in `LTLayoutContainer.group_textboxes` that returned some text lines out of order ([#659](https://github.com/pdfminer/pdfminer.six/pull/659))
+- Add handling of JPXDecode filter to enable extraction of images for some pdfs ([#645](https://github.com/pdfminer/pdfminer.six/pull/645))
+- Fix extraction of jbig2 files, which was producing invalid files ([#652](https://github.com/pdfminer/pdfminer.six/pull/653))
+- Crash in `pdf2txt.py --boxes-flow=disabled` ([#682](https://github.com/pdfminer/pdfminer.six/pull/682))
+- Only use xref fallback if `PDFNoValidXRef` is raised and `fallback` is True ([#684](https://github.com/pdfminer/pdfminer.six/pull/684))
+- Ignore empty characters when analyzing layout ([#499](https://github.com/pdfminer/pdfminer.six/pull/499))
 
 ### Changed
 - Replace warnings.warn with logging.Logger.warning in line with [recommended use](https://docs.python.org/3/howto/logging.html#when-to-use-logging) ([#673](https://github.com/pdfminer/pdfminer.six/pull/673))
@@ -89,7 +146,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Hiding fallback xref by default from dumppdf.py output ([#431](https://github.com/pdfminer/pdfminer.six/pull/431))
 - Raise a warning instead of an error when extracting text from a non-extractable PDF ([#453](https://github.com/pdfminer/pdfminer.six/pull/453))
 - Switched from pycryptodome to cryptography package for AES decryption ([#456](https://github.com/pdfminer/pdfminer.six/pull/456))
-
+  
 ## [20200517]
 
 ### Added
@@ -146,18 +203,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Deprecated
 - The argument `_py2_no_more_posargs` because Python2 is removed on January
-, 2020 ([#328](https://github.com/pdfminer/pdfminer.six/pull/328) and
+, 2020 ([#328](https://github.com/pdfminer/pdfminer.six/pull/328) and 
 [#307](https://github.com/pdfminer/pdfminer.six/pull/307))
 
 ### Added
 - Simple wrapper to easily extract text from a PDF file [#330](https://github.com/pdfminer/pdfminer.six/pull/330)
 - Support for extracting JBIG2 encoded images ([#311](https://github.com/pdfminer/pdfminer.six/pull/311) and [#46](https://github.com/pdfminer/pdfminer.six/pull/46))
-- Sphinx documentation that is published on
+- Sphinx documentation that is published on 
   [Read the Docs](https://pdfminersix.readthedocs.io/)
   ([#329](https://github.com/pdfminer/pdfminer.six/pull/329))
 
 ### Fixed
-- Unhandled AssertionError when dumping pdf containing reference to object id 0
+- Unhandled AssertionError when dumping pdf containing reference to object id 0 
  ([#318](https://github.com/pdfminer/pdfminer.six/pull/318))
 - Debug flag actually changes logging level to debug for pdf2txt.py and
  dumppdf.py ([#325](https://github.com/pdfminer/pdfminer.six/pull/325))
